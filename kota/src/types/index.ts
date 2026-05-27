@@ -3,6 +3,6 @@ export interface Produto {
   nome: string;
   descricao: string;
   preco: number;
-  categoria: 'doce' | 'salgado';
+  categoria: 'doces' | 'salgados';
   imagem: string;
 }

@@ -1,17 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
-import type { Produto } from './types';
 import { Home } from './pages/Home';
+import { Produtos } from './pages/produtos';
+import { CartProvider } from './contes/CartContext';
 
 function App() {
   return (
+    <CartProvider>
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50  flex flex-col">
         <Navbar />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/produtos" element={<Produtos />} />
             {/* Aqui você adicionará novas rotas no futuro, ex: */}
             {/* <Route path="/produto/:id" element={<DetalhesProduto />} /> */}
           </Routes>
@@ -20,6 +23,7 @@ function App() {
         <Footer />
       </div>
     </BrowserRouter>
+    </CartProvider>
   );
 }
 

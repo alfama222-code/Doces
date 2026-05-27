@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import bgImage from '../assets/image_5383e7.jpg';
 
 export function Hero() {
@@ -20,15 +21,14 @@ export function Hero() {
         <p className="text-lg text-gray-200 max-w-2xl mb-10 leading-relaxed">
           Aqui você encontra a melhor qualidade e os melhores sabores, tudo feito com dedicação e carinho para você.
         </p>
-        
+
         <div className="flex justify-start gap-4">
-          <button className="bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-all shadow-lg">
+          <Link to="/produtos" className="bg-orange-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-700 transition-all shadow-lg">
             Ver Cardápio
-          </button>
-          <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all">
-            Saiba Mais
-          </button>
+          </Link>
         </div>
+
+
       </div>
     </section>
   );

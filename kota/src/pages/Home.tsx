@@ -1,124 +1,85 @@
-import { Hero } from '../components/hero';
-import { ProductCard } from '../components/ProductCard';
-import { useState } from 'react';
-import type { Produto } from '../types';
-
-
-
-// Dados de exemplo (No futuro, virão da sua API Express)
-const PRODUTOS_MOCK: Produto[] = [
-  {
-    id: 1,
-    nome: "Coxinha Especial",
-    descricao: "Massa de batata com recheio de frango super cremoso.",
-    preco: 8.50,
-    categoria: 'salgado',
-    imagem: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 2,
-    nome: "Brigadeiro Gourmet",
-    descricao: "Chocolate belga 50% cacau e granulado premium.",
-    preco: 5.00,
-    categoria: 'doce',
-    imagem: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 3,
-    nome: "Coxinha Especial",
-    descricao: "Massa de batata com recheio de frango super cremoso.",
-    preco: 8.50,
-    categoria: 'salgado',
-    imagem: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 4,
-    nome: "Brigadeiro Gourmet",
-    descricao: "Massa de batata com recheio de frango super cremoso.",
-    preco: 8.50,
-    categoria: 'doce',
-    imagem: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 5,
-    nome: "Coxinha Especial",
-    descricao: "Massa de batata com recheio de frango super cremoso.",
-    preco: 8.50,
-    categoria: 'salgado',
-    imagem: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 6,
-    nome: "Brigadeiro Gourmet",
-    descricao: "Massa de batata com recheio de frango super cremoso.",
-    preco: 8.50,
-    categoria: 'doce',
-    imagem: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=400"
-  }
-
-];
+import { BookOpen, Heart, Star } from 'lucide-react';
+import { Hero } from '../components/Hero';
 
 export function Home() {
-  const [categoriaAtiva, setCategoriaAtiva] = useState<'todos' | 'doce' | 'salgado' | 'bebida'>('todos');
-
-  // 2. Criamos uma lista filtrada baseada na categoria escolhida
-  const produtosFiltrados = PRODUTOS_MOCK.filter(produto => {
-    if (categoriaAtiva === 'todos') return true;
-    return produto.categoria === categoriaAtiva;
-  });
 
   return (
     <>
       <Hero />
 
-      <section className="max-w-6xl mx-auto py-16 px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800">Nosso Cardápio</h2>
-            <p className="text-gray-500">Produtos feitos artesanalmente para você</p>
-          </div>
+{/* Nova Seção: Sobre Nós / Nossa História */}
+      <section id="historia" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            
+            {/* Lado Esquerdo: Imagem Decorativa Ajustada para Baixo */}
+            {/* 1. Removi a margem negativa e o animate-pulse totalmente.
+                2. Adicionei 'md:mt-16' para empurrá-la para baixo no desktop.
+                3. Mantive 'z-10' e 'relative' apenas por segurança de empilhamento. */}
+            <div className="flex-1 relative md:mt-16 z-10"> 
+              
+              {/* Imagem Principal - Limpa, sem adereços, com borda branca e sombra */}
+              <img 
+                src="public\WhatsApp Image 2026-05-27 at 09.03.42.jpeg"
+                alt="Nossa Cozinha" 
+                className="rounded-3xl shadow-2xl relative object-cover h-[500px] w-full border-8 border-white"
+              />
+            </div>
 
-          {/* Exemplo de filtro rápido com Tailwind */}
-          <div className="flex gap-2">
-            <button onClick={() => setCategoriaAtiva('todos')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${categoriaAtiva === 'todos' ? 'bg-orange-600 text-white' : 'bg-white text-gray-600 border border-gray-200'
-                }`}
-            >
-              Todos
-            </button>
+            {/* Lado Direito: Texto da História */}
+            <div className="flex-1 space-y-6 pt-4"> {/* pt-4 para manter o alinhamento com o topo da imagem subida */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-sm font-bold uppercase tracking-wider">
+                <BookOpen size={16} />
+                Nossa Jornada
+              </div>
+              
+              <h2 className="text-4xl font-black text-gray-800 leading-tight">
+                Como a <span className="text-orange-600">Sabor&Arte</span> começou...
+              </h2>
 
-            <button onClick={() => setCategoriaAtiva('doce')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${categoriaAtiva === 'doce' ? 'bg-orange-600 text-white' : 'bg-white text-gray-600 border border-gray-200'
-                }`}
-            >
-              Doces
-            </button>
-            <button onClick={() => setCategoriaAtiva('salgado')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${categoriaAtiva === 'salgado' ? 'bg-orange-600 text-white' : 'bg-white text-gray-600 border border-gray-200'
-                }`}
-            >
-              Salgados
-            </button>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Tudo começou em 2020, em uma pequena cozinha familiar. O que era apenas um hobby de fim de semana para presentear amigos, logo se transformou em uma paixão avassaladora pela confeitaria e pelos salgados artesanais.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <div className="flex gap-4">
+                  <div className="bg-orange-100 p-3 rounded-xl h-fit text-orange-600">
+                    <Heart size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800">Feito com Amor</h4>
+                    <p className="text-sm text-gray-500">Cada receita carrega o carinho de gerações da nossa família.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="bg-orange-100 p-3 rounded-xl h-fit text-orange-600">
+                    <Star size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800">Qualidade Premium</h4>
+                    <p className="text-sm text-gray-500">Usamos apenas ingredientes selecionados e chocolate nobre.</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-gray-600 leading-relaxed">
+                Hoje, o <strong>Sabor&Arte</strong> não é apenas uma empresa, é a realização do sonho de entregar felicidade em forma de comida. Nossa missão é fazer parte das suas celebrações, levando sabor e beleza para a sua mesa.
+              </p>
+            </div>
+
           </div>
         </div>
-
-        {/* Grid Responsivo */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {produtosFiltrados.map(item => (
-            <ProductCard key={item.id} produto={item} />
-          ))}
-        </div>
-        {/* Mensagem caso não encontre nada */}
-        {produtosFiltrados.length === 0 && (
-          <p className="text-center text-gray-500 py-10">Nenhum produto encontrado nesta categoria.</p>
-        )}
       </section>
 
       {/* Uma seção extra de CTA (Call to Action) com Tailwind */}
       <section className="bg-orange-600 py-12 px-8 text-center text-white">
-        <h3 className="text-2xl font-bold mb-4">Ficou com dúvida sobre algum ingrediente?</h3>
+        <h3 className="text-2xl font-bold mb-4">Ficou com dúvida sobre nosso trabalho?</h3>
         <p className="mb-6 opacity-90">Chame a nossa equipe agora mesmo no WhatsApp!</p>
-        <button className="bg-white text-orange-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg">
+        <button
+          onClick={() => window.open('https://wa.me/9814798', '_blank')}
+          type="button"
+          className=" bg-white text-orange-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg">
           Falar com Atendimento
         </button>
       </section>
